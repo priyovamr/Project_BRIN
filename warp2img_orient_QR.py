@@ -74,7 +74,8 @@ while True:
     success2, frame2 = cap2.read()
     m_frame1 = cv2.flip(frame1, 1)
     m_frame2 = cv2.flip(frame2, 1)
-    img = np.concatenate((m_frame2, m_frame1), axis=1)
+    r_frame2 = cv2.rotate(m_frame2, cv2.ROTATE_180)
+    img = np.concatenate((r_frame2, m_frame1), axis=0)
 
     for barcode in decode(img):
         myData = barcode.data.decode('utf-8')
